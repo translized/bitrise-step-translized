@@ -4,7 +4,7 @@ require 'fileutils'
 require 'yaml'
 
 def create_directory(dirname)
-  unless Dir.exists?(dirname)
+  unless Dir.exist?(dirname)
     FileUtils.mkdir_p(dirname)
   end
 end
