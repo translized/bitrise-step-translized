@@ -104,6 +104,7 @@ for download in downloadConfig do
   response = http.request(request)
 
   jsonResponse = JSON.parse(response.body)
+  puts jsonResponse
   if response.code == "200" then
     jsonResponse["result"].each { |language|
       locale, url = language.first
