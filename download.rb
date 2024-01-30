@@ -36,8 +36,6 @@ projectId = config[:translized][:project_id]
 token = config[:translized][:access_token]
 downloadConfig = config[:translized][:download]
 
-puts projectId
-puts token
 if projectId.nil?
   puts "\e[31m#{"Please input project_id in .translized.yml file"}\e[0m"
   return
@@ -52,7 +50,6 @@ if !downloadConfig.kind_of?(Array)
 end
 
 script_dir = Dir.pwd
-puts script_dir
 
 for download in downloadConfig do
   fileFormat = download[:file_format]
@@ -101,14 +98,13 @@ for download in downloadConfig do
   end
 
   request.body = body.to_json
-  puts request
 
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   response = http.request(request)
 
   jsonResponse = JSON.parse(response.body)
-  # puts jsonResponse
+  puts jsonResponse
   if response.code == "200" then
     jsonResponse["result"].each { |language|
       locale, url = language.first
